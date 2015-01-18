@@ -1,6 +1,5 @@
 Heroku-instanssit: 
-<ul>
-<li>https://stark-thicket-7258.herokuapp.com/breweries</li>
-<li>https://stark-thicket-7258.herokuapp.com/beers</li>
-</ul>
+https://stark-thicket-7258.herokuapp.com/breweries
+https://stark-thicket-7258.herokuapp.com/beers
+
 
