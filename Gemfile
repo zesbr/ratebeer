@@ -46,7 +46,8 @@ gem 'rb-readline'
 end
 
 group :development, :test do
-  gem 'sqlite3'
+   gem "better_errors"
+   gem 'sqlite3'
 end
 
 group :production do

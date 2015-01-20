@@ -14,6 +14,18 @@
  *= require_self
  */
 .navibar {
-    padding: 10px;
-    background: #EFEFEF;
+    padding: 12px 0px 12px 6px;
+    background-color: rgba(225, 225, 225, 1.0);
+}
+.navibar > a {
+	font-family: "arial", "helvetica", "sans-serif";
+	font-weight: 700;
+	color: rgba(0, 0, 0, 0.7);
+	font-size: 1.3em;
+	text-decoration: none;
+	padding: 5px 24px 7px 24px;
+}
+.navibar > a:hover {
+	color: rgba(0, 0, 0, 0.9);
+	background-color: rgba(0, 0, 0, 0.1) !important;
 }
