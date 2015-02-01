@@ -1,15 +1,16 @@
 class Beer < ActiveRecord::Base
-	include AverageRating
+	include AverageRating	
 	
+	validates :name, presence: true
+
 	belongs_to :brewery
 	has_many :ratings, dependent: :destroy
+	has_many :raters, through: :ratings, source: :user
 
-	#def average_rating
-		#sum = self.ratings.sum(:score)
-		#count = self.ratings.count
-		#avg = 1.0 * sum / count
-		#return "#{avg}"
-	#end
+	def average
+		return 0 if ratings.empty?
+		ratings.map { |r| r.score }.sum / ratings.count.to_f
+	end
 
 	def to_s
 		return "#{name}, #{brewery.name}"

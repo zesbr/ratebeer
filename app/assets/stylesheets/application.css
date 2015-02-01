@@ -29,3 +29,16 @@
 	color: rgba(0, 0, 0, 0.9);
 	background-color: rgba(0, 0, 0, 0.1) !important;
 }
+
+.navibar > span > a {
+	font-family: "arial", "helvetica", "sans-serif";
+	font-weight: 700;
+	color: rgba(0, 0, 0, 0.7);
+	font-size: 1.1em;
+	text-decoration: none;
+	padding: 5px 6px 7px 6px;
+}
+.navibar > span > a:hover {
+	text-decoration: underline;
+	background-color: rgba(0, 0, 0, 0.0) !important;
+}

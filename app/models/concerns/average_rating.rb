@@ -4,6 +4,6 @@ module AverageRating
 		count = self.ratings.count
         sum = self.ratings.sum(:score)
         avg = 1.0 * sum / count
-        return "#{avg}"
+        return avg.round(2)
 	end
 end

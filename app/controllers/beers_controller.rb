@@ -29,7 +29,8 @@ class BeersController < ApplicationController
   # POST /beers.json
   def create
     @beer = Beer.new(beer_params)
-
+    @breweries = Brewery.all
+    @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
     respond_to do |format|
       if @beer.save
         format.html { redirect_to beers_path, notice: 'Beer was successfully created.' }
@@ -40,6 +41,7 @@ class BeersController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /beers/1
   # PATCH/PUT /beers/1.json
