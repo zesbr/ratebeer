@@ -1,7 +1,5 @@
-Heroku-instanssit: 
+Heroku-instanssi: 
 
-https://stark-thicket-7258.herokuapp.com/breweries
-
-https://stark-thicket-7258.herokuapp.com/beers
+https://stark-thicket-7258.herokuapp.com
 
 
