@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Beers</h1>
-
+<p>Number of beers: <%= "#{@beers.count}" %></P>
+<hr/>
 <table>
   <thead>
     <tr>
@@ -18,8 +19,8 @@
         <td><%= link_to beer.name, beer %></td>
         <td><%= beer.style %></td>
         <td><%= link_to beer.brewery.name, brewery_path(beer.brewery_id) %></td>
-        <td><%= link_to 'Edit', edit_beer_path(beer) %></td>
-        <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to('Edit', edit_beer_path(beer)) if current_user %></td>
+        <td><%= link_to('Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' }) if current_user %></td>
       </tr>
     <% end %>
   </tbody>
@@ -27,6 +28,6 @@
 
 <br>
 
-<%= link_to 'New Beer', new_beer_path %>
+<%= link_to('New Beer', new_beer_path) if current_user %>
 <br>
 <%= link_to 'List of Breweries', breweries_path %>

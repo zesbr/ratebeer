@@ -42,3 +42,23 @@
 	text-decoration: underline;
 	background-color: rgba(0, 0, 0, 0.0) !important;
 }
+th, td {
+	text-align: left;
+	padding: 8px 32px 8px 0px;
+}
+ul {
+	margin: 0;
+	padding-left: 24px;
+}
+li {
+	padding: 0px 0px 8px 0px;
+}
+table a, ul a {
+	text-decoration: none;
+	padding: 3px 0px 3px 0px;
+}
+table a:hover, ul a:hover {
+	color: inherit;
+	background: none;
+	border-bottom: 1px solid rgb(125, 125, 125);
+}

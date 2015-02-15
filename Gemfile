@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'httparty'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -42,7 +43,12 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-gem 'rb-readline' 
+  gem 'rb-readline' 
+
+  gem 'rspec-rails', '~> 3.0'
+
+  gem 'rspec-its'
+
 end
 
 group :development, :test do
@@ -53,6 +59,13 @@ end
 group :production do
    gem 'pg'
    gem 'rails_12factor'
+end
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'simplecov', require: false
 end
 
 ruby '2.2.0'
