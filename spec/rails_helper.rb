@@ -73,11 +73,12 @@ def create_beers_with_ratings(*scores, user)
 end
 
 def create_beers_with_ratings_and_brewery(*scores, brewery, user)
-    create_beers(scores, "Pale Ale", brewery, user)
+  style = FactoryGirl.create(:style)
+    create_beers(scores, style, brewery, user)
 end
 
 def create_beers_with_ratings_and_style(*scores, style, user)
-    create_beers(scores, style, Brewery.new, user)
+  create_beers(scores, style, Brewery.new, user)
 end
 
 def create_beers(scores, style, brewery, user)

@@ -71,6 +71,9 @@ RSpec.describe User, type: :model do
 
     describe "favorite style" do
         let(:user){FactoryGirl.create(:user) }
+        let(:style){FactoryGirl.create(:style) }
+        let!(:style2) { FactoryGirl.create :style, name:"Porter" }
+        let!(:style3) { FactoryGirl.create :style, name:"IPA" }
 
         it "has method for determining one" do
             expect(user).to respond_to(:favorite_style)
@@ -81,17 +84,17 @@ RSpec.describe User, type: :model do
         end
         
         it "is the style of the only rated if one rating" do
-            create_beers_with_ratings_and_style(10, "Lager", user)
+            create_beers_with_ratings_and_style(10, style, user)
 
             expect(user.favorite_style).to eq("Lager")
         end
         
         it "is the style with highest average rating if several rated" do
-            create_beers_with_ratings_and_style(10, 20, 15, "Lager", user)
-            create_beers_with_ratings_and_style(35, "IPA", user)
-            create_beers_with_ratings_and_style(25, 20, 15, "Porter", user)
+            create_beers_with_ratings_and_style(10, 20, 15, style, user)
+            create_beers_with_ratings_and_style(35, style2, user)
+            create_beers_with_ratings_and_style(25, 20, 15, style3, user)
 
-            expect(user.favorite_style).to eq("IPA")
+            expect(user.favorite_style).to eq("Porter")
         end
     end
 
@@ -127,7 +130,7 @@ RSpec.describe User, type: :model do
             expect(beer).to be_valid
         end
         it "has the default style" do
-            expect(beer.style).to eq("Lager")
+            expect(beer.style.name).to eq("Lager")
         end
     end
 end

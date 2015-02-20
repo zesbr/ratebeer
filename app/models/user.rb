@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 	has_many :ratings
 	has_many :beers, through: :ratings
 	has_many :memberships, dependent: :destroy
-  	has_many :beer_clubs, through: :memberships
+	has_many :beer_clubs, through: :memberships
 
 	def favorite_beer
 		return nil if ratings.empty?
@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 	def favorite_style
 		return nil if ratings.empty?
 		style_ratings = rated_styles.inject([]) { |set, style| set << [style, style_average(style) ] }
-		style_ratings.sort_by{ |r| r.last }.last.first
+		style_ratings.sort_by{ |r| r.last }.last.first.name
 	end
 
 	#private

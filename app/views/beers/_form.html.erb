@@ -2,22 +2,20 @@
   <% if @beer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@beer.errors.count, "error") %> prohibited this beer from being saved:</h2>
-
       <ul>
-      <% @beer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @beer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :style %><br>
-    <%= f.select :style, options_for_select(@styles, @styles) %>
+    <%= f.label :style_id %><br>
+    <%= f.select :style_id, options_from_collection_for_select(@styles, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :brewery_id %><br>
