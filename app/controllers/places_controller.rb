@@ -1,13 +1,33 @@
 class PlacesController < ApplicationController
-  def index
-  end
+    before_action :set_place, only: [:show]
 
-  def search
-    @places = BeermappingApi.places_in(params[:city])
-    if @places.empty?
-      redirect_to places_path, notice: "No locations in #{params[:city]}"
-    else
-      render :index
+    def index
     end
-  end
+
+    def show
+    end
+
+    def search
+
+        @places = BeermappingApi.places_in(params[:city])
+        if @places.empty?
+            redirect_to places_path, notice: "No locations in #{params[:city]}"
+        else
+            session[:last_city] = params[:city]
+            render :index
+        end
+    end
+
+    private
+    # Use callbacks to share common setup or constraints between actions.
+    
+    def set_place
+      @places = BeermappingApi.places_in(session[:last_city])
+      @places.each do |place|
+        if place.id == params[:id]
+          @place = place
+        end
+      end
+    end
+
 end

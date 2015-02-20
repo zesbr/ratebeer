@@ -1,30 +1,29 @@
 Rails.application.routes.draw do
   resources :memberships
-
   resources :beer_clubs
-
   resources :users
   resource :session, only: [:new, :create, :delete]
   resources :beers
   resources :breweries
   resources :ratings, only: [:index, :new, :create, :destroy]
+  resources :places, only:[:index, :show]
   
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
   root 'breweries#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
 
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'
 
-  get 'places', to: 'places#index'
   post 'places', to:'places#search'
+
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
+
+  # You can have the root of your site routed with "root"
+  # root 'welcome#index'
+
+  # Example of regular route:
+  # get 'products/:id' => 'catalog#view'
   # get 'ratings', to: 'ratings#index'
   # get 'ratings/new', to:'ratings#new'
   # post 'ratings', to: 'ratings#create'

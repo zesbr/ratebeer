@@ -62,3 +62,6 @@ table a:hover, ul a:hover {
 	background: none;
 	border-bottom: 1px solid rgb(125, 125, 125);
 }
+section {
+	padding: 16px;
+}
