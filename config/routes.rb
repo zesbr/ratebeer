@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :styles
-
   resources :memberships
   resources :beer_clubs
   resources :users
@@ -10,7 +9,9 @@ Rails.application.routes.draw do
   resources :ratings, only: [:index, :new, :create, :destroy]
   resources :places, only:[:index, :show]
   
-  root 'breweries#index'
+  root 'welcome#index'
+
+  get 'welcome/index'
 
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'

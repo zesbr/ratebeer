@@ -1,33 +1,34 @@
 <p id="notice"><%= notice %></p>
+
 <h1>Search Bars</h1>
-<hr/>
+<p>Bar infromation provided by Beermapping API</p>
 
 <%= form_tag places_path do %>
-    <%= text_field_tag :city, params[:city] %>
-    <%= submit_tag "Search" %>
+	<%= text_field_tag :city, params[:city] %>
+	<%= submit_tag "Search" %>
 <% end %>
 
 <% if @places %>
-    <table>
-        <thead>
-            <% Place.rendered_fields.each do |f| %>
-                <td><%= f %></td>
-            <% end %>
-        </thead>
-        <tbody>
-            <% @places.each do |place| %>
-                <tr>
-                    <% Place.rendered_fields.each do |f| %>
-                        <td>
-                            <% if f==:name %>
-                            <%= link_to place.name, place_path(place.id) %>
-                            <% else %>
-                              <%= place.send(f) %>
-                            <% end %>
-                        </td>
-                    <% end %>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+	<table class="table table-hover">
+		<thead>
+			<% Place.rendered_fields.each do |f| %>
+				<td><%= f %></td>
+			<% end %>
+		</thead>
+		<tbody>
+			<% @places.each do |place| %>
+				<tr>
+					<% Place.rendered_fields.each do |f| %>
+						<td>
+							<% if f==:name %>
+								<%= link_to place.name, place_path(place.id) %>
+							<% else %>
+								<%= place.send(f) %>
+							<% end %>
+						</td>
+					<% end %>
+				</tr>
+		<% end %>
+		</tbody>
+	</table>
 <% end %>

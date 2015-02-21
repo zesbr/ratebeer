@@ -1,15 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Users</h1>
+<p>Number of users: <%= "#{@users.count}" %></P>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Username</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @users.each do |user| %>
       <tr>
@@ -18,7 +17,5 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
 
 <%= link_to 'New User', new_user_path %>

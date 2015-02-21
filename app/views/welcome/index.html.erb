@@ -1,0 +1,17 @@
+<div class="landing">
+	<div class="jumbotron">
+		<%= image_tag "logo.png" %>
+		<p>Preapare to hold your inner fluids, because here comes</p>
+	  <h1>das überbeerrater3000</h1>
+	  <p>Super app built with ruby on rails, that will solve all your problems by guiding you towards healthier lifestyle, improved social status and ultimate tolerance for alcohol.</p>
+	  <p>So don't be a milk drinker and join our noble cause immidiately!</p>
+	  <% unless current_user %>
+		  <div class="actions">
+		  	<%= link_to 'signin', signin_path, class:'btn btn-lg' %></a>
+		  	<span class="split">or</span>
+		  	<%= link_to 'signup', signup_path, class:'btn btn-lg' %>
+			</div>
+		<% end %>
+	</div>
+</div>
+
