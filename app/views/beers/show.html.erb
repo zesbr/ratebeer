@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @beer.name %></h1>
 
-<h1>
-	<%= @beer.name %>
-</h1>
+<hr/>
 
 <p>
 	<strong>Style:</strong>
@@ -11,29 +9,40 @@
 
 <p>
 	<strong>Brewery:</strong>
-	<%= @beer.brewery_id %>
+	<%= @beer.brewery.name %>
 </p>
 
+
+
+<h2>Ratings</h2>
 <p>
 	<% if @beer.ratings.empty? %>
-	 	This beer has not yet been rated!
+	 	The beer has not been rated.
 	<% else %>
-		<%= "Beer has #{pluralize(@beer.ratings.count, 'rating', 'ratings')}, average #{@beer.average_rating}" %>
+		<%= "Total of #{pluralize(@beer.ratings.count, 'rating', 'ratings')} with average score of #{@beer.average_rating}" %>
 	<% end %>
 </p>
-
-<% if current_user %>
-	<h4>Give a rating:</h4>
-	<%= form_for(@rating) do |f| %>
-		<%= f.hidden_field :beer_id %>
-		<div class="field">
-			<%= f.number_field :score %>
-    	<%= f.submit class:'btn btn-primary btn-xs' %>
-    </div>
-	<% end %>
+<% if @beer.ratings.empty? %>
+	<p>No added beers for brewery.</p>
+<% else %>
+	<%= render 'ratings/list', ratings: @beer.ratings %>
 <% end %>
 
+<hr/>
+
+<% if current_user %>
+	<h2>Give a rating:</h2>
+	<%= form_for(@rating) do |f| %>
+		<%= f.hidden_field :beer_id %>
+		<div class="input-group col-sm-2">
+			<%= f.number_field :score, class:'form-control' %>
+			<span class="input-group-btn">
+  			<%= f.submit 'Rate', class:'btn btn-primary' %>
+  		</span>
+  	</div>
+	<% end %>
+<% end %>
 <div class="actions">
-	<%= link_to('Edit', edit_beer_path(@beer), class:'btn btn-warning') if current_user %>
+	<%= link_to 'Edit', edit_beer_path(@beer), class:'btn btn-warning' if current_user %>
 </div>
 <%= link_to 'Back', beers_path %>

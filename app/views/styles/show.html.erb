@@ -1,14 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>
-  <%= @style.name %>
+	<%= @style.name %>
 </h1>
+<quote>
+	<%= @style.description %>
+</quote>
 
-<p>
-  <%= @style.description %>
-</p>
-
-<% if @style.beers.count > 0 %>
+<% unless @style.beers.empty? %>
 	<h3>Beers</h3>
 	<ul>
 	<% @style.beers.each do |b| %>
@@ -17,6 +16,7 @@
 	</ul>
 <% end %>
 
-<br><hr/>
-<%= link_to 'Edit', edit_style_path(@style) %> |
+<%= edit_and_destroy_buttons(@style) %>
+
+
 <%= link_to 'Back', styles_path %>

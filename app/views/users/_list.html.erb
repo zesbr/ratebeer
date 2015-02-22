@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+	<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th>Username</th>
+				<th>Number of ratings</th>
+				<th>Favorite beer</th>
+				<th>Favorite brewery</th>
+				<th>Favorite style</th>
+				<th>Status</th>
+				<th><%= "Actions" if current_user %></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <% users.each do |user| %>
+	      <tr>
+					<td><%= link_to user.username, user %></td>
+					<td><%= user.ratings.count %></td>
+					<td><%= link_to user.favorite_beer.name, user.favorite_beer unless user.favorite_beer.nil? %></td>
+					<td><%= link_to user.favorite_brewery.name, user.favorite_brewery unless user.favorite_brewery.nil? %></td>
+					<td><%= link_to user.favorite_style.name, user.favorite_style unless user.favorite_style.nil? %></td>
+					<td>
+						<% if user.locked? %>
+          		<span class="label label-danger">Locked</span>
+          	<% else %>
+          		<span class="label label-success">Active</span>
+          	<% end %>
+					</td>
+					<td>
+						<div class="btn-group" role="group" aria-label=""true>	
+							<% if current_user && current_user.admin %>	
+              	<%= link_to 'Edit', edit_user_path(user), class:'btn btn-warning btn-xs' %>
+              	<%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger btn-xs' %>
+          		<% elsif user == current_user %>	
+              	<%= link_to 'Edit', edit_user_path(user), class:'btn btn-warning btn-xs' %>
+              	<%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger btn-xs' %>
+							<% end %>		
+						</div>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

@@ -5,13 +5,11 @@ class Rating < ActiveRecord::Base
         only_integer: true 
     }
 
+  scope :recent, -> { Rating.all.order(created_at: :desc).limit(5) }
+
 	belongs_to :beer
 	belongs_to :user
-
-	def getScore
-		return score
-	end
-
+	
 	def to_s
 		"#{beer.name}, pisteitä: #{score} "
 	end

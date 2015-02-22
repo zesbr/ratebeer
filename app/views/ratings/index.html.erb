@@ -1,10 +1,122 @@
-<h1>List of ratings</h1>
-<p>Total of <%= pluralize(@ratings.count, 'rating', 'ratings') %> given</p>
-<ul>
- <% @ratings.each do |rating| %>
-   <li> <%= rating %> <%= link_to rating.user.username, rating.user %> </li>
- <% end %>
-</ul>
-<% unless current_user.nil? %> 	
-	<%= link_to 'New Rating', new_rating_path, class:'btn btn-default' %>
-<% end %>
+<div class="row">
+	<div class="col-md-12">
+		<h1>Rating Statistics</h1>
+		<hr/>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-4">
+		<h3>Best beers</h3>
+		<%= render 'top', ratings: @top_beers %>
+		
+	</div>
+	
+	<div class="col-md-4">
+		<h3>Best breweries</h3>
+		<%= render 'top', ratings: @top_breweries %>
+	</div>
+	
+	<div class="col-md-4">
+		<h3>Best styles</h3>
+		<%= render 'top', ratings: @top_styles %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h3>Most ratings</h3>
+		<div class="panel panel-default">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Rater</th>
+						<th>Number of ratings</th>
+						<th>Favorite beer</th>
+						<th>Favorite brewery</th>
+						<th>Favorite style</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @most_active_raters.each do |rater| %>
+						<tr>
+							<td><%= link_to rater.username, rater %></td>
+							<td><%= rater.ratings.count %></td>
+							<% unless rater.favorite_beer.nil? %>
+								<td><%= link_to rater.favorite_beer.name, rater.favorite_beer %></td>
+								<td><%= link_to rater.favorite_brewery.name, rater.favorite_brewery %></td>
+								<td><%= link_to rater.favorite_style.name, rater.favorite_style %></td>
+							<% else %>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							<% end %>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h3>Most recent</h3>
+		<div class="panel panel-default">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Beer</th>
+						<th>Brewery</th>
+						<th>Rater</th>
+						<th>Score</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @most_recent_ratings.each do |rating| %>
+						<tr>
+							<td><%= link_to rating.beer.name, rating %></td>
+							<td><%= link_to rating.beer.brewery.name, rating %></td>
+							<td><%= link_to rating.user.username, rating %></td>
+							<td><%= link_to rating.score.to_f %></td>
+							<td><%= time_ago_in_words(rating.created_at) %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h3>All ratings</h3>
+		<p><%= "Number of ratings: #{@ratings.count}" %></p>
+		<div class="panel panel-default">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Beer</th>
+						<th>Brewery</th>
+						<th>Rater</th>
+						<th>Score</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @ratings.each do |rating| %>
+						<tr>
+							<td><%= link_to rating.beer.name, rating %></td>
+							<td><%= link_to rating.beer.brewery.name, rating %></td>
+							<td><%= link_to rating.user.username, rating %></td>
+							<td><%= link_to rating.score.to_f %></td>
+							<td><%= time_ago_in_words(rating.created_at) %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Beer</th>
+				<th>Brewery</th>
+				<th>Rater</th>
+				<th>Score</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% ratings.each do |rating| %>
+				<tr>
+					<td><%= link_to rating.beer.name, rating %></td>
+					<td><%= link_to rating.beer.brewery.name, rating %></td>
+					<td><%= link_to rating.user.username, rating %></td>
+					<td><%= link_to rating.score.to_f %></td>
+					<td><%= time_ago_in_words(rating.created_at) %> ago</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

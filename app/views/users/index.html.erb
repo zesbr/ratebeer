@@ -1,21 +1,7 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Users</h1>
-<p>Number of users: <%= "#{@users.count}" %></P>
+<hr/>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Username</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.username, user %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'list', users: @users %>
+<hr/>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', new_user_path, class:'btn btn-success' if current_user %>

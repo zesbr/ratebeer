@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :ratings, only: [:index, :new, :create, :destroy]
   resources :places, only:[:index, :show]
   
+
   root 'welcome#index'
 
   get 'welcome/index'
@@ -25,7 +26,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
+
   # Example of regular route:
+
+
+
   # get 'products/:id' => 'catalog#view'
   # get 'ratings', to: 'ratings#index'
   # get 'ratings/new', to:'ratings#new'
@@ -38,6 +43,15 @@ Rails.application.routes.draw do
   #   resources :products
 
   # Example resource route with options:
+
+  resources :breweries do
+    post 'toggle_activity', on: :member
+  end
+
+  resources :users do
+    post 'toggle_locked', on: :member
+  end
+  
   #   resources :products do
   #     member do
   #       get 'short'

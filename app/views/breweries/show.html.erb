@@ -1,19 +1,43 @@
-<p id="notice"><%= notice %></p>
+<h1>
+	<%= @brewery.name %>
+</h1>
 
-<h1><%= @brewery.name %></h1>
+<hr/>
 
-<p><i>Established in <%= @brewery.year %></i></p>
+<p>
+	<strong>Founded:</strong>
+	<%= "Established in #{@brewery.year}, #{@brewery.country}" %>
+	<% if not @brewery.active  %>
+		<span class="label label-danger">retired</span>
+	<% end %>
+</p>
 
-<h3>Beers</h3>
-<p><%= "Count of Beers: #{@brewery.beers.count}" %></p>
-<ul>
-	<% @brewery.beers.each do |beer| %>
- 		<li><%= link_to beer.name, beer %></li>
- 	<% end %>
-</ul>
-<p>Has <%= pluralize(@brewery.ratings.count, "rating", "ratings") %>, average <%= @brewery.average_rating %></p>
+<p>
+	<strong>Ratings:</strong>
+	<%= "#{pluralize(@brewery.ratings.count, 'rating', 'ratings')} with average score of #{round(@brewery.average_rating)}" %>
+</p>
 
-<div class="actions">
-	<%= link_to('Edit', edit_brewery_path(@brewery), class:'btn btn-warning') if current_user %>
+<h2>Beers</h2>
+<p>
+	<%= "Number of beers: #{@brewery.beers.count}" %></p>
+<p>
+<% if @brewery.beers.empty? %>
+	<p>No added beers for brewery.</p>
+<% else %>
+	<%= render 'beers/list', beers: @brewery.beers %>
+<% end %>
+
+<hr/>
+
+<div class="btn-group">
+	<% if current_user %>
+		<%= link_to 'Edit', edit_brewery_path(@brewery), class:'btn btn-warning' %>
+		<% if current_user.admin? %>
+			<%= link_to "Shutdown", toggle_activity_brewery_path(@brewery.id), method: :post, class: "btn btn-danger" if @brewery.active? %>
+			<%= link_to "Activate", toggle_activity_brewery_path(@brewery.id), method: :post, class: "btn btn-success" if !@brewery.active %>
+		<% end %>
+	<% end %>
 </div>
-<%= link_to 'Back', breweries_path %>
+
+
+

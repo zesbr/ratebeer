@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Average</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% ratings.each do |rating| %>
+				<tr>
+					<td><%= link_to rating.name, rating %></td>
+					<td><%= round(rating.average_rating) %>
+            <% if rating.average_rating >= 10 %> 
+              <span class="glyphicon glyphicon-fire hot" aria-hidden="true"></span>
+            <% end %>
+        </td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
