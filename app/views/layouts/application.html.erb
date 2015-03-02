@@ -2,13 +2,12 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "übeerator" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "das überbeerrater" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ratebeer" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700|Slabo+27px|Oswald:400,300,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Ubuntu:300,400,700|Slabo+27px|Oswald:400,300,700|Montserrat:400,700' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <header>
@@ -19,6 +18,11 @@
       <main role="main" class="container-full">
     <% else %> 
       <main role="main" class="container">
+
+        <ol class="breadcrumb">
+          <li><span class="glyphicon glyphicon-home"></span></li>
+          <li>Breadcrumb's is todo</li>
+        </ol>
     <% end %>
 
       <%= render 'layouts/messages' %>
@@ -27,6 +31,7 @@
           <%= yield %>
         </div>
       </div>
+
     </main>
   </body>
 </html>

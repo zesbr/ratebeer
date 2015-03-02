@@ -81,7 +81,7 @@
 							<td><%= link_to rating.beer.brewery.name, rating %></td>
 							<td><%= link_to rating.user.username, rating %></td>
 							<td><%= link_to rating.score.to_f %></td>
-							<td><%= time_ago_in_words(rating.created_at) %></td>
+							<td><%= time_ago_in_words(rating.created_at) %> ago</td>
 						</tr>
 					<% end %>
 				</tbody>
@@ -112,7 +112,7 @@
 							<td><%= link_to rating.beer.brewery.name, rating %></td>
 							<td><%= link_to rating.user.username, rating %></td>
 							<td><%= link_to rating.score.to_f %></td>
-							<td><%= time_ago_in_words(rating.created_at) %></td>
+							<td><%= time_ago_in_words(rating.created_at) %> ago</td>
 						</tr>
 					<% end %>
 				</tbody>

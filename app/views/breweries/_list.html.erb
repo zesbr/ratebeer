@@ -1,44 +1,49 @@
 <div class="panel panel-default">
-  <table class="table table-hover table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Country</th>
-        <th>Year</th>
-        <th>Status</th>
-        <th>Average score</th>
-        <th><%= "Actions" if current_user %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% breweries.each do |brewery| %>
+
+    <table class="table table-hover table-condensed">
+      
+      <thead>
         <tr>
-          <td><%= link_to brewery.name, brewery %></td>
-          <td><%= brewery.country %></td>
-          <td><%= brewery.year %></td>
-          <td>
-          <% if brewery.active? %>
-          	<span class="label label-success">Active</span>
-          <% else %>
-          	<span class="label label-danger">Retired</span>
-          <% end %>
-          </td>
-          <td>
-            <%= round(brewery.average_rating) %>
-            <% if brewery.average_rating >= 10 %> 
-              <span class="glyphicon glyphicon-fire hot" aria-hidden="true"></span>
-            <% end %>
-          </td>
-          <td>
-            <div class="btn-group" role="group" aria-label=""true>
-              <% if current_user %>
-                <%= link_to 'Edit', edit_brewery_path(brewery), class:'btn btn-warning btn-xs' %>
-                <%= link_to 'Destroy', brewery, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger btn-xs' if current_user.admin %>
-              <% end %>
-            </div>
-          </td>
+          <th>Name</th>
+          <th>Country</th>
+          <th>Year</th>
+          <th>Status</th>
+          <th>Average score</th>
+          <th><%= "Actions" if current_user %></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% breweries.each do |brewery| %>
+          <tr>
+            <td><%= link_to brewery.name, brewery %></td>
+            <td><%= brewery.country %></td>
+            <td><%= brewery.year %></td>
+            <td>
+            <% if brewery.active? %>
+            	<span class="label label-success">Active</span>
+            <% else %>
+            	<span class="label label-danger">Retired</span>
+            <% end %>
+            </td>
+            <td>
+              <%= round(brewery.average_rating) %>
+              <% if brewery.average_rating >= 10 %> 
+                <span class="glyphicon glyphicon-fire hot" aria-hidden="true"></span>
+              <% end %>
+            </td>
+            <td>
+              <div class="btn-group" role="group" aria-label=""true>
+                <% if current_user %>
+                  <%= link_to 'Edit', edit_brewery_path(brewery), class:'btn btn-warning btn-xs' %>
+                  <%= link_to 'Destroy', brewery, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger btn-xs' if current_user.admin %>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+
 </div>

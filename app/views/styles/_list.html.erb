@@ -12,7 +12,7 @@
 	  	<% @styles.each do |style| %>
 		  	<tr>
 	    		<td><%= link_to style.name, style %></td>
-	    		<td><%= truncate style.description, length: 128 %></td>
+	    		<td><%= truncate style.description, length: 60 %></td>
 	    		<td><%= round(style.average_rating) %>
             <% if style.average_rating >= 10 %> 
               <span class="glyphicon glyphicon-fire hot" aria-hidden="true"></span>

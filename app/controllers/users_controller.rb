@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.all.includes(:beers, :ratings).all
+     #@beers = Beer.all.includes(:brewery, :style).all
+
   end
 
   # GET /users/1

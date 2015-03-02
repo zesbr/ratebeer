@@ -1,3 +1,4 @@
+<% cache @beer do %>
 <h1>
 	<%= @brewery.name %>
 </h1>
@@ -16,6 +17,7 @@
 	<strong>Ratings:</strong>
 	<%= "#{pluralize(@brewery.ratings.count, 'rating', 'ratings')} with average score of #{round(@brewery.average_rating)}" %>
 </p>
+<% end %>
 
 <h2>Beers</h2>
 <p>

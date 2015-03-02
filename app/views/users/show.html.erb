@@ -5,15 +5,11 @@
 <hr/>
 
 <h3>Memberships</h3>
-	<% if @user.beer_clubs.any? %>
-	<ul>
-		<% @user.beer_clubs.each do |club| %>
-	      <li><%= link_to club.name, club %></li>
-	  	<% end %>
-	</ul>
-	<% else %>
+<% if @user.beer_clubs.any? %>
+	<%= render 'beer_clubs/list', beer_clubs: @user.beer_clubs %>
+<% else %>
 		<p>Use has not registered to any beer clubs</p>
-	<% end %>
+<% end %>
 
 <h2>Ratings</h2>
 <% if @user.ratings.any? %>

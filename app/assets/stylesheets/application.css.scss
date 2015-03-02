@@ -14,39 +14,31 @@
  *= require_self
  */
 
-
-.hot {
-	color: rgb(255,100,0);
+.navbar {
+	background-color: rgba(25,25,25,1.0);
+	border: none;
+}
+.navbar-brand {
+	font-family: 'montserrat', sans-serif;
+	font-size: 1em;
+}
+.navbar-nav {
+	li {
+		font-family: 'montserrat', sans-serif;
+		font-size: 1em;
+	}
 }
 
+
 main {
+	background-color: rgb(255, 255, 255) !important;
 	margin-top: 96px !important;
 }
 
 .container-full {
 	margin: 0 auto;
   width: 100%;
-	.col-md-12 {
-		padding: 0;
-	}
-}
-
-h2 {
-	font-size: 1.8em;
-
-}
-
-
-html {
-	
-}
-main {
-	background-color: rgb(255, 255, 255) !important;
-}
-
-.navbar {
-	background-color: rgba(40,40,40,1.0);
-	border: none;
+	.col-md-12 { padding: 0; }
 }
 
 h1 {
@@ -54,6 +46,11 @@ h1 {
 	font-size: 4em;
 	font-weight: 700;
 }
+h2 {
+	font-size: 1.8em;
+}
+
+
 .btn-xs {
 	padding-left: 8px;
 	padding-right: 8px;
@@ -61,7 +58,6 @@ h1 {
 .btn-primary, .btn-danger, .btn-success, .btn-warning {
 	color: rgb(255,255,255) !important;
 }
-
 .panel {
 	thead {
 	th {
@@ -73,9 +69,10 @@ h1 {
 		}
 	}
 }
-
 .alert {
 	margin-top: 16px !important;
 	margin-bottom: 16px !important;
 }
-
+.hot {
+	color: rgb(255,100,0);
+}

@@ -1,40 +1,37 @@
-<p id="notice"><%= notice %></p>
+<h1>
+	<%= @beer_club.name %>
+</h1>
 
-<h2>
-	<%= @beer_club.name %>, <%= @beer_club.city %>
-</h2>
+<hr/>
+
 <p>
-	Founded in <%= @beer_club.founded %>
+	<strong>City:</strong>
+	<%= @beer_club.city %>
+</p>
+<p>
+	<strong>Founded:</strong>
+	<%= @beer_club.founded %>
 </p>
 
-
 <h3>Members</h3>
-<ul>
-	<% @beer_club.members.each do |member| %>
-		<li><%= link_to member.username, member %></li>
-	<% end %>
-</ul>
+<%= render 'users/list', users: @beer_club.members %>
+
+<hr/>
 
 <% if current_user %>
+	
 	<% unless @beer_club.members.include? current_user %>
 		<%= form_for(@membership) do |f| %>
 			<%= f.hidden_field :beer_club_id %>
-			<%= f.submit value:"join the club" %>
+			<%= f.submit value:"Join the club", class:'btn btn-success' %>
 		<% end %>
  	<% else %>
 		<%= form_for(@membership, method: "delete") do |f| %>
       <%= f.hidden_field :beer_club_id %>
-    	<%= f.submit value: "end the membership" %>
+      <div class="btn-group">
+				<%= link_to 'Edit', edit_beer_club_path(@beer_club), class:'btn btn-warning' if current_user %>
+    		<%= f.submit value: "End membership", class:'btn btn-danger' %>
+    	</div>
 		<% end %>
  	<% end %>
 <% end %>
-
-
-
-
-
-
-
-<br><hr/>
-<%= link_to('Edit', edit_beer_club_path(@beer_club)) if current_user %>
-<%= link_to 'Back', beer_clubs_path %>
