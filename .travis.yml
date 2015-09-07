@@ -4,11 +4,11 @@ rvm:
  - 2.2.0
 
 script:
- - bundle exec rake db:migrate --trace
- - RAILS_ENV=test bundle exec rake db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec -fd spec/
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
 
- deploy:
+deploy:
   provider: heroku
   api_key: 49eaa858-9750-4d3b-b7ad-4921b88f6e1e
